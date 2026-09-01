@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>YouTube Equalizer Pro</title>
+<link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <header>
+    <img src="icons/icon32.png" alt="" />
+    <div>
+      <h1>Equalizer <span>PRO</span></h1>
+      <p id="statusLine">Waiting for playback&hellip;</p>
+    </div>
+  </header>
+
+  <canvas id="viz" width="228" height="46"></canvas>
+
+  <div class="presets" id="presets">
+    <button data-preset="flat">Flat</button>
+    <button data-preset="bass">Bass Boost</button>
+    <button data-preset="treble">Treble Boost</button>
+    <button data-preset="vocal">Vocal</button>
+    <button data-preset="loudness">Loudness</button>
+    <button data-preset="podcast">Podcast</button>
+    <button data-preset="movie">Movie</button>
+  </div>
+
+  <div class="section-title">Master</div>
+  <div class="row">
+    <label>Volume <span id="volumeVal">100%</span></label>
+    <input type="range" id="volume" min="0" max="200" step="1" />
+  </div>
+  <div class="row">
+    <label>Preamp <span id="preampVal">0 dB</span></label>
+    <input type="range" id="preamp" min="-20" max="20" step="1" />
+  </div>
+
+  <div class="section-title">5-Band Equalizer</div>
+  <div class="eq-grid">
+    <div class="band">
+      <input type="range" id="sub" min="-15" max="15" step="1" orient="vertical" />
+      <span class="bandVal" id="subVal">0</span>
+      <label>Sub</label>
+    </div>
+    <div class="band">
+      <input type="range" id="bass" min="-15" max="15" step="1" orient="vertical" />
+      <span class="bandVal" id="bassVal">0</span>
+      <label>Bass</label>
+    </div>
+    <div class="band">
+      <input type="range" id="mid" min="-15" max="15" step="1" orient="vertical" />
+      <span class="bandVal" id="midVal">0</span>
+      <label>Mid</label>
+    </div>
+    <div class="band">
+      <input type="range" id="treble" min="-15" max="15" step="1" orient="vertical" />
+      <span class="bandVal" id="trebleVal">0</span>
+      <label>Treble</label>
+    </div>
+    <div class="band">
+      <input type="range" id="air" min="-15" max="15" step="1" orient="vertical" />
+      <span class="bandVal" id="airVal">0</span>
+      <label>Air</label>
+    </div>
+  </div>
+
+  <div class="row toggle-row">
+    <label class="switch">
+      <input type="checkbox" id="limiter" checked />
+      <span class="slider-toggle"></span>
+    </label>
+    <div class="toggle-text">
+      <strong>Smart Limiter</strong>
+      <small>Stops boosted bass from clipping / buzzing</small>
+    </div>
+  </div>
+
+  <div class="save-row">
+    <input type="text" id="presetName" placeholder="Save current as preset&hellip;" maxlength="20" />
+    <button id="savePreset">Save</button>
+  </div>
+  <div class="custom-presets" id="customPresets"></div>
+
+  <button id="reset" class="reset-btn">Reset to Flat</button>
+
+  <script src="popup.js"></script>
+</body>
+</html>
